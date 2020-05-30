@@ -1,0 +1,10 @@
+runtime: nodejs12
+service: default
+handlers:
+- url: /(.*\.(gif|png|jpg|css|js|ico)(|\.map))$
+  static_files: dist/sodacalc/\1
+  upload: dist/sodacalc/(.*)(|\.map)
+
+- url: /(.*)
+  static_files: dist/sodacalc/index.html
+  upload: dist/sodacalc/index.html
