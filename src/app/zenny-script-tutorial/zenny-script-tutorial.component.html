@@ -1,0 +1,75 @@
+<h1 class=".mat-display-1">
+  Zenny's Scripting Tutorial
+</h1>
+<p>
+  Welcome old and new fizzy sodaneers! Zenny back here again if you're read my guides for the first gane and if you're new here welcome! I write helpful guides for all here that are easy to understand and grasp so buckle up! Today I'll be covering the most interactive part of sd2.. Soda scripts. These can allow you to customize how your party acts in auto combat and you can create as many as you want! But they can be kinda hard to grasp with the overwhelming array of options so that's what I am here for. 
+</p>
+<h1 class="mat-headline">
+  Step 1, triggers.
+</h1>
+Triggers are what the scripts look for when performing an action, the higher the trigger the higher priority it has. Triggers compose of 4 parts. Section, margins, values and actions. I'll be going over each part.
+
+First we have sections. There are three major section, enemies.. Allies and self. Pretty self explanatory, they make the triggers act upon enemies, allies or themselves. But that's the first part of a trigger.. There is more coming down the road. 
+Next are margins, they appear right after the sections. For each sections there are different margins, I'll list them all here for each section.
+Enemies: Is ore, isn't ore, rank, team alive, hp, status, facing, backturned, weakest, has essence, team hp, mp and any. 
+Ally: Weakest, hp, mp, Team alive, team hp, status and any.
+Self: Hp, mp, team alive, team hp and status.
+Now what these do is give the script a specific margin to make an action happen. Some margins do not have values, some do. But for those with values they have extra specific things to set so you can fine tune your auto strat anymore! The ones with values are as below.
+Hp, mp, enemy team alive, team alive, team hp and status. Now values are easy, there are 4 more symbols to note. != means not equal, &#62; means greater than, &#60; means less than and = means equal. Pretty simple stuff. But now we're at the final part.. Actions. Select the action you want to do at the end of your script when all conditions are met. Simple. Don't need to list them all :D
+
+But now here comes the tricky part.. Putting them all together into a functioning script. So let's say I want my mystics to use their aoe on 2 mob packs and above. First my section would need to be enemy, since the script is meant to attack. Now the perfect margin for this is team alive, since we're focusing on aoe. Now there's the value. We want to aoe on mob packs 2+ so we want to make it read for enemy amount greater than 1. Finally we're at actions. We want to use aoe, so we set it to use the strongest aoe. And bam, that's a simple aoe trigger for mystics! 
+
+Part 2 Multi trigger scripts. 
+Now that we've learned how to create triggers, it's time to learn about more having more than one trigger in a script. Let's use mystics again as an example. They have the ability recharge, which gives mp regen to all alive team members. So let's combine our previous trigger with this one so they give mp regen to the entire team and aoe spam. 
+Since we want this to happen first, we should move this new trigger to the top. Now if we're buffing allies ally is the proper section to click on.. Buff are a status so the margin is self explanatory.. Now status is a unique margin with extra bits beyond numbers. So we'd want to have our status set to none so they will cast it whenever it runs out. Giving mp regen to the team. Now for the action we have to set it for a specific skill, pretty easy. Just hit that and find recharge. Bam, you now have a mystic script that goes smoothly for both damage and support.. But we've left one thing out. The one mob packs and boss mobs, we have no trigger for them! That is for you to figure out. I've given you the tools, good luck.
+
+
+For those who just scrolled down.
+Aight I know some people just scrolled down to get some cheesy script knowledge and I'm not one to disappoint. Below are simple scripts for most classes, but nothing to advanced. Should be clean and easy to read as well. If any issues arise (such as me fucking up one trigger dm me on the soda dungeon discord.)
+(Note, all scripts are meant for classes with lv 25 skills unlocked.)
+Soda junkie script: 
+T1: Enemy is ore = Pickaxe (this makes them ignore ores since they cant use pickaxe) 
+T2: Enemy rank &#62; Miniboss = big burp
+T2: Enemy team alive &#62; 2 = big burp
+T3: Enemy = facing = Big burp 
+T4: Enemy = back turned = strongest single attack
+Carpenter script:
+T1: Enemy is ore = Pickaxe
+T2: Enemy rank &#62; Miniboss = Nailed it
+T3: Enemy team alive &#60; 3 = default attack
+T4: Enemy team alive &#62; 2 = Nailed it
+T5: Enemy backturned = Nailed it
+Miner Script: 
+T1: Enemy rank = norm transmute
+T2: Enemy is ore = Pickaxe 
+T3: Enemy weakest = default attack
+T4: Enemy back turned = default attack
+Mystic script: 
+T1: Ally status = none = Recharge
+T2: Enemy team alive &#60;2 = Default attack
+T3: Enemy team alive &#62; 1 = Strongest aoe
+T4: Enemy rank &#62; Miniboss = strongest single target attack 
+Thief script:
+T1: Enemy is ore = pickaxe
+T2: Enemy hp = 100% = Ransack
+T3: Enemy hp &#60; 100% = default attack
+T3: Enemy back turned = strongest single target attack
+T4: Self mp = 5% = defend
+Nurse Script: 
+T1: Ally hp &#60; 30% = First aid
+T2: Ally hp &#60; 80% = groupheal
+T3: Foe rank = Dimension boss = Biohazard
+T4: Foe weakest = Default attack
+Huntress script: 
+T1: Enemy rank = Dimension boss = Mark
+T2: Enemy weakest = Default attack
+T3: Enemy back turned = default attack
+Darkmage script:
+T1: Enemy team alive &#62; 2 = Strongest Aoe
+T2: Enemy team alive &#60; 3 = Strongest single target attack
+T3: Enemy rank &#62; Mini boss = Strongest single target attack
+Blademaster script: 
+T1: Enemy backturned = Double strike
+T2: Enemy rank = Dimension boss = Double strike
+T3: Enemy weakest = default attack.
+Well, I will take my leave now. More guides will come out! Stay fizzy everyone! I will see you back in another guide.

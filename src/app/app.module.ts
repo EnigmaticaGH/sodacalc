@@ -17,13 +17,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { ZennyScriptTutorialComponent } from './zenny-script-tutorial/zenny-script-tutorial.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MonsterComponent,
     BestiaryComponent,
-    MonsterStatCalcComponent
+    MonsterStatCalcComponent,
+    ZennyScriptTutorialComponent
   ],
   imports: [
     BrowserModule,

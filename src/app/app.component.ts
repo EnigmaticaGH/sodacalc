@@ -18,6 +18,9 @@ export class AppComponent implements OnInit {
   },{
     name: 'Monster Stat Calculator',
     url: '/monster-stats'
+  },{
+    name: "Zenny's Scripting Tutorial",
+    url: '/zenny-tutorial'
   }];
   links: AppRoute[] = [{
     name: 'Report an Issue',
