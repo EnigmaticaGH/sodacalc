@@ -1,15 +1,16 @@
-<mat-drawer-container class="container">
-  <mat-drawer mode="side" opened>
-    <div class="nav-pane">
-      <button mat-flat-button
-      *ngFor="let route of routes"
-      [routerLink]="route.url"
-      [color]="checkSelected(route)">
-        {{route.name}}
-      </button>
-    </div>
-  </mat-drawer>
-  <mat-drawer-content>
-    <router-outlet></router-outlet>
-  </mat-drawer-content>
-</mat-drawer-container>
+<mat-toolbar class="nav-bar">
+  <button mat-flat-button
+  *ngFor="let route of routes"
+  [routerLink]="route.url"
+  [color]="checkSelected(route)">
+    {{route.name}}
+  </button>
+  <a mat-button
+  *ngFor="let link of links"
+  [href]="link.url"
+  target="_blank"
+  color="primary">
+    {{link.name}}
+  </a>
+</mat-toolbar>
+<router-outlet></router-outlet>

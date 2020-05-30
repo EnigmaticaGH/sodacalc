@@ -19,6 +19,13 @@ export class AppComponent implements OnInit {
     name: 'Monster Stat Calculator',
     url: '/monster-stats'
   }];
+  links: AppRoute[] = [{
+    name: 'Report an Issue',
+    url: 'https://github.com/EnigmaticaGH/sodacalc/issues'
+  },{
+    name: 'Get Soda Dungeon 2',
+    url: 'https://www.sodadungeon.com/'
+  }];
   currentUrl = '';
 
   constructor(
