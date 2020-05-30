@@ -1,0 +1,9 @@
+.monster-container{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.monster-container app-monster{
+  min-width: 300px;
+  margin: 8px;
+}

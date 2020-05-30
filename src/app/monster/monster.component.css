@@ -1,0 +1,23 @@
+.monster-card {
+  max-width: 400px;
+}
+
+.monster-card.caverns{
+  background-color: #fff8e1;
+}
+
+.monster-card.jail{
+  background-color: #ffe082;
+}
+
+.monster-card.kitchen{
+  background-color: #ffca28;
+}
+
+.monster-card.armory{
+  background-color: #ffb300;
+}
+
+.monster-card.throne-room{
+  background-color: #ff8f00;
+}

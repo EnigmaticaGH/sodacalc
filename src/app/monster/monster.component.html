@@ -1,0 +1,13 @@
+<mat-card [class]="monsterClass">
+  <mat-card-header>
+    <mat-card-title>{{monster.name}}</mat-card-title>
+    <mat-card-subtitle>Found in: {{monster.room}}</mat-card-subtitle>
+  </mat-card-header>
+  <!-- <img mat-card-image src="" alt="Photo of a Shiba Inu"> -->
+  <mat-card-content>
+    <mat-list role="list">
+      <mat-list-item role="listitem">Base HP: {{monster.hp}}</mat-list-item>
+      <mat-list-item role="listitem">Base Attack: {{monster.atk}}</mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

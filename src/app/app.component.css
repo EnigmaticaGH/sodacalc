@@ -1,0 +1,16 @@
+.nav-pane{
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-pane button:not(:first-child){
+  margin-top: 8px;
+}
+
+.container{
+  height: 100%;
+}
+
+.nav-pane button{
+  border-radius: 0;
+}

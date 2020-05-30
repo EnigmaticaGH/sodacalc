@@ -1,0 +1,50 @@
+<div class='component-wrapper'>
+  <h1 class="mat-headline">Calculate HP, Attack, and Gold for any monster on any floor based on your party's Gold Find Bonus</h1>
+  <div class="container">
+    <form class="calc-form">
+      <mat-form-field>
+        <mat-label>Floor</mat-label>
+        <input matInput
+        name="floor"
+        type="number"
+        [(ngModel)]="currentFloor"
+        (ngModelChange)="checkMonsterList()"
+        min="1">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Monster</mat-label>
+        <mat-select name="monster" [(ngModel)]="selectedMonster">
+          <mat-option>-- None --</mat-option>
+          <mat-option *ngFor="let monster of groupAtFloor()" [value]="monster">
+            {{monster.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Party Gold Find Bonus</mat-label>
+        <input matInput name="gold-find" type="number" [(ngModel)]="goldFind">
+        <span matSuffix>%</span>
+      </mat-form-field>
+    </form>
+    <div class="calc-results">
+      <span class="result">HP:
+        <span *ngIf="selectedMonster && currentFloor">
+          {{hpAtFloor(selectedMonster, currentFloor)}}
+        </span>
+      </span>
+      <span class="result">Attack:
+        <span *ngIf="selectedMonster && currentFloor">
+          {{atkAtFloor(selectedMonster, currentFloor)}}
+        </span>
+      </span>
+      <span class="result">Gold:
+        <span *ngIf="selectedMonster && currentFloor && goldFind != undefined">
+          {{goldAtFloor(selectedMonster, currentFloor, convertGoldFind())}}
+        </span>
+      </span>
+    </div>
+    <div class="selected-monster">
+      <app-monster *ngIf="selectedMonster" [monster]="selectedMonster"></app-monster>
+    </div>
+  </div>
+</div>
