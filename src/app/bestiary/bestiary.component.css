@@ -1,6 +1,7 @@
 .monster-container{
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .monster-container app-monster{
