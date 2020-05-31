@@ -2,7 +2,8 @@ import { Monster } from './monster';
 
 export function hpAtFloor(m: Monster, currentFloor: number): number {
   let areaFloor = currentFloor - (currentFloor % 20) + 1;
-  return Math.floor(m.hp + 0.65 * areaFloor + (65 * Math.floor(currentFloor / 500)));
+  let increaseAfter500 = 65 * (currentFloor / 500);
+  return Math.floor(m.hp + 0.65 * areaFloor + (areaFloor > 500 ? increaseAfter500 : 0));
 }
 
 export function atkAtFloor(m: Monster, currentFloor): number {
