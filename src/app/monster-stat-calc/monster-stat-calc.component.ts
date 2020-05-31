@@ -6,7 +6,13 @@ import { MonsterService } from '../monster.service';
 interface MonsterGroup {
   name: string,
   monsters: Monster[]
-}
+};
+
+interface MonsterAtFloor {
+  name: string,
+  atkAtFloor: number,
+  hpAtFloor: number
+};
 
 @Component({
   selector: 'app-monster-stat-calc',
@@ -22,6 +28,7 @@ export class MonsterStatCalcComponent implements OnInit {
   hpAtFloor = hpAtFloor;
   atkAtFloor = atkAtFloor;
   goldAtFloor = goldAtFloor;
+  attack = 1;
 
   constructor(
     private monsterService: MonsterService
@@ -50,8 +57,8 @@ export class MonsterStatCalcComponent implements OnInit {
     return group ? group.name : '';
   }
 
-  groupAtFloor(): Monster[] {
-    let roomIndex = Math.floor((this.currentFloor - 1) % 100 / 20);
+  groupAtFloor(floor: number): Monster[] {
+    let roomIndex = Math.floor((floor - 1) % 100 / 20);
     if (this.monsterGroups[roomIndex]) {
       return this.monsterGroups[roomIndex].monsters;
     }
@@ -63,9 +70,40 @@ export class MonsterStatCalcComponent implements OnInit {
   }
 
   checkMonsterList(): void {
-    let newGroup = this.groupAtFloor();
+    let newGroup = this.groupAtFloor(this.currentFloor);
     if (!newGroup.includes(this.selectedMonster)) {
       this.selectedMonster = null;
+    }
+  }
+
+  maxFloorKill(): {floor: number, monsters: MonsterAtFloor[]} {
+    if (this.monsterGroups.length <= 0 || this.attack < 2) {
+      return {floor: 0, monsters: []};
+    }
+    let floor = 1;
+    let monsters: MonsterAtFloor[] = [];
+    while (true) {
+      let oldMonsters = monsters.slice();
+      monsters = [];
+      let oldFloor = floor;
+      floor++;
+      if (floor % 5 == 0) {
+        floor++;
+      }
+      let group = this.groupAtFloor(floor);
+      for(let monster of group.filter(m => m.type == 'Normal')) {
+        let hp = hpAtFloor(monster, floor);
+        if (this.attack >= hp) {
+          monsters.push({
+            name: monster.name,
+            atkAtFloor: atkAtFloor(monster, floor),
+            hpAtFloor: hpAtFloor(monster, floor)
+          });
+        }
+      }
+      if (monsters.length <= 0) {
+        return {floor: oldFloor, monsters: oldMonsters};
+      }
     }
   }
 }
