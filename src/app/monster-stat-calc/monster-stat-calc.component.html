@@ -14,7 +14,6 @@
             name="floor"
             type="number"
             [(ngModel)]="currentFloor"
-            (ngModelChange)="checkMonsterList()"
             min="1">
           </mat-form-field>
           <mat-form-field>
@@ -35,17 +34,17 @@
         <div class="calc-results">
           <span class="result">HP:
             <span *ngIf="selectedMonster && currentFloor">
-              {{hpAtFloor(selectedMonster, currentFloor)}}
+              {{selectedMonster.hpAtFloor(currentFloor)}}
             </span>
           </span>
           <span class="result">Attack:
             <span *ngIf="selectedMonster && currentFloor">
-              {{atkAtFloor(selectedMonster, currentFloor)}}
+              {{selectedMonster.atkAtFloor(currentFloor)}}
             </span>
           </span>
           <span class="result">Gold:
             <span *ngIf="selectedMonster && currentFloor && goldFind != undefined">
-              {{goldAtFloor(selectedMonster, currentFloor, convertGoldFind())}}
+              {{selectedMonster.goldAtFloor(currentFloor, convertGoldFind())}}
             </span>
           </span>
         </div>
@@ -94,8 +93,8 @@
           <tbody>
             <tr *ngFor="let monster of maxFloorKill().monsters">
               <td class="name-field">{{monster.name}}</td>
-              <td class="atk-field">{{monster.atkAtFloor}}</td>
-              <td class="hp-field">{{monster.hpAtFloor}}</td>
+              <td class="atk-field">{{monster.atkAtFloor(maxFloorKill().floor)}}</td>
+              <td class="hp-field">{{monster.hpAtFloor(maxFloorKill().floor)}}</td>
             </tr>
           </tbody>
         </table>
