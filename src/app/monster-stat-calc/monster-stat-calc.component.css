@@ -1,3 +1,13 @@
+.cards{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cards mat-card{
+  margin: 8px;
+  background-color: #ede7f6;
+}
+
 .component-wrapper{
   display: flex;
   flex-direction: column;
@@ -31,11 +41,30 @@ mat-form-field{
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  width: 200px;
+  width: 125px;
 }
 
 .calc-results .result{
   margin: 8px;
-  padding-bottom: 23.5px;
-  padding-top: 23px;
+  padding-bottom: 23.625px;
+  padding-top: 4.125px;
+  border-top: .84375em solid transparent;
+}
+
+.monsters-table{
+  width: 100%;
+  margin: 4px;
+  text-align: left;
+}
+
+.name-field{
+  width: 60%;
+}
+
+.atk-field,.hp-field{
+  width: 20%;
+}
+
+mat-card{
+  width: 400px;
 }
