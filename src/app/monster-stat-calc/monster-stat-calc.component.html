@@ -17,40 +17,32 @@
             min="1">
           </mat-form-field>
           <mat-form-field>
-            <mat-label>Monster</mat-label>
-            <mat-select name="monster" [(ngModel)]="selectedMonster">
-              <mat-option>-- None --</mat-option>
-              <mat-option *ngFor="let monster of groupAtFloor(currentFloor)" [value]="monster">
-                {{monster.name}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field>
             <mat-label>Party Gold Find Bonus</mat-label>
             <input matInput name="gold-find" type="number" [(ngModel)]="goldFind">
             <span matSuffix>%</span>
           </mat-form-field>
         </form>
-        <div class="calc-results">
-          <span class="result">HP:
-            <span *ngIf="selectedMonster && currentFloor">
-              {{selectedMonster.hpAtFloor(currentFloor)}}
-            </span>
-          </span>
-          <span class="result">Attack:
-            <span *ngIf="selectedMonster && currentFloor">
-              {{selectedMonster.atkAtFloor(currentFloor)}}
-            </span>
-          </span>
-          <span class="result">Gold:
-            <span *ngIf="selectedMonster && currentFloor && goldFind != undefined">
-              {{selectedMonster.goldAtFloor(currentFloor, convertGoldFind())}}
-            </span>
-          </span>
-        </div>
       </div>
-      <div class="selected-monster">
-        <app-monster *ngIf="selectedMonster" [monster]="selectedMonster"></app-monster>
+      <div class="monsters-table">
+        <span>Monster stats for selected floor:</span>
+        <table class="monsters-table">
+          <thead>
+            <tr>
+              <th class="name-field">Name</th>
+              <th class="atk-field">ATK</th>
+              <th class="hp-field">HP</th>
+              <th class="gp-field">GP</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let monster of monstersAtFloor(currentFloor)">
+              <td class="name-field">{{monster.name}}</td>
+              <td class="atk-field">{{monster.atkAtFloor(currentFloor)}}</td>
+              <td class="hp-field">{{monster.hpAtFloor(currentFloor)}}</td>
+              <td class="gp-field">{{monster.goldAtFloor(currentFloor, convertGoldFind())}}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </mat-card-content>
   </mat-card>
@@ -69,19 +61,16 @@
             name="attack"
             type="number"
             [(ngModel)]="attack"
+            (ngModelChange)="calcMaxFloorKill()"
             min="1">
           </mat-form-field>
         </form>
-        <div class="calc-results">
-          <span class="result">Max Floor:
-            <span *ngIf="attack">
-              {{maxFloorKill().floor}}
-            </span>
-          </span>
-        </div>
       </div>
-      <div>
-        <span>Monsters able to be 1-hit on floor:</span>
+      <div *ngFor="let rank of maxAtkFloor | keys; let i = index">
+        <mat-divider *ngIf="i > 0"></mat-divider>
+        <div class="monsters-table-title">
+          Max Floor for {{rank}} Monsters: <b>{{maxAtkFloor[rank].floor}}</b>
+        </div>
         <table class="monsters-table">
           <thead>
             <tr>
@@ -91,10 +80,54 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let monster of maxFloorKill().monsters">
+            <tr *ngFor="let monster of maxAtkFloor[rank].monsters">
               <td class="name-field">{{monster.name}}</td>
-              <td class="atk-field">{{monster.atkAtFloor(maxFloorKill().floor)}}</td>
-              <td class="hp-field">{{monster.hpAtFloor(maxFloorKill().floor)}}</td>
+              <td class="atk-field">{{monster.atkAtFloor(maxAtkFloor[rank].floor)}}</td>
+              <td class="hp-field">{{monster.hpAtFloor(maxAtkFloor[rank].floor)}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Max Floor Calculator (The other one..)</mat-card-title>
+      <mat-card-subtitle>Calculates how high you can survive one hit from monsters</mat-card-subtitle>
+    </mat-card-header>
+    <!-- <img mat-card-image src="" alt="Photo of a Shiba Inu"> -->
+    <mat-card-content>
+      <div class="container">
+        <form class="calc-form">
+          <mat-form-field>
+            <mat-label>HP</mat-label>
+            <input matInput
+            name="hp"
+            type="number"
+            [(ngModel)]="hp"
+            (ngModelChange)="calcMaxFloorLive()"
+            min="1">
+          </mat-form-field>
+        </form>
+      </div>
+      <div *ngFor="let rank of maxHPFloor | keys; let i = index">
+        <mat-divider *ngIf="i > 0"></mat-divider>
+        <div class="monsters-table-title">
+          Max Floor for {{rank}} Monsters: <b>{{maxHPFloor[rank].floor}}</b>
+        </div>
+        <table class="monsters-table">
+          <thead>
+            <tr>
+              <th class="name-field">Name</th>
+              <th class="atk-field">ATK</th>
+              <th class="hp-field">HP</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let monster of maxHPFloor[rank].monsters">
+              <td class="name-field">{{monster.name}}</td>
+              <td class="atk-field">{{monster.atkAtFloor(maxHPFloor[rank].floor)}}</td>
+              <td class="hp-field">{{monster.hpAtFloor(maxHPFloor[rank].floor)}}</td>
             </tr>
           </tbody>
         </table>

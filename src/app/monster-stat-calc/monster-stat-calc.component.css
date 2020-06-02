@@ -18,6 +18,14 @@ mat-form-field{
   margin: 8px;
 }
 
+.monsters-table-title{
+  padding-top: 8px;
+}
+
+.monsters-table-title b{
+  float: right;
+}
+
 .mat-headline{
   margin-top: 16px;
   padding: 0 8px;
@@ -34,7 +42,7 @@ mat-form-field{
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  max-width: 200px;
+  width: 100%;
 }
 
 .calc-results{
