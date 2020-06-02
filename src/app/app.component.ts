@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RoutesRecognized } from '@angular/router';
+import { routeLinks } from './route-links';
+
 interface AppRoute {
   name: string,
   url: string
@@ -12,13 +14,8 @@ interface AppRoute {
 })
 export class AppComponent implements OnInit {
   title = 'sodacalc';
-  routes: AppRoute[] = [{
-    name: 'Bestiary',
-    url: '/bestiary'
-  },{
-    name: 'Monster Stat Calculator',
-    url: '/monster-stats'
-  }];
+  routes: AppRoute[] = [];
+
   links: AppRoute[] = [{
     name: 'Report an Issue',
     url: 'https://github.com/EnigmaticaGH/sodacalc/issues'
@@ -33,9 +30,12 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.routes = routeLinks.map(routeLink => {
+      return { name: routeLink.name, url: routeLink.route.path };
+    });
     this.router.events.subscribe(route => {
       if (route instanceof RoutesRecognized) {
-        this.currentUrl = route.url;
+        this.currentUrl = route.url.replace('/', '');
       }
     });
   }

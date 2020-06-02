@@ -1,13 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { BestiaryComponent } from './bestiary/bestiary.component';
-import { MonsterStatCalcComponent } from './monster-stat-calc/monster-stat-calc.component';
+import { routeLinks } from './route-links';
 
-
-const routes: Routes = [
-  { path: 'bestiary', component: BestiaryComponent },
-  { path: 'monster-stats', component: MonsterStatCalcComponent },
-];
+const routes: Routes = routeLinks.map(r => r.route);
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
