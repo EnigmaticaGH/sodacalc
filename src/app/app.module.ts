@@ -20,6 +20,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
 import { KeysPipe } from './keys.pipe';
 import { MatDividerModule } from '@angular/material/divider';
+import { RelicStatsComponent } from './relic-stats/relic-stats.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MonsterComponent,
     BestiaryComponent,
     MonsterStatCalcComponent,
-    KeysPipe
+    KeysPipe,
+    RelicStatsComponent
   ],
   imports: [
     BrowserModule,
