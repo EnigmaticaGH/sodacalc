@@ -1,38 +1,38 @@
-export type MonsterType = 'Normal' | 'Miniboss' | 'Boss';
+export type MonsterRank = 'Normal' | 'Miniboss' | 'Boss';
 
 export class Monster {
   private _hp: number;
   private _atk: number;
   private _room: string;
-  private _type: MonsterType;
+  private _rank: MonsterRank;
   private _name: string;
 
-  constructor(name: string, hp: number, atk: number, room: string, type: MonsterType) {
+  constructor(name: string, hp: number, atk: number, room: string, type: MonsterRank) {
     this._name = name;
     this._hp = hp;
     this._atk = atk;
     this._room = room;
-    this._type = type;
+    this._rank = type;
   }
 
   get name(): string {
-    return this._name
+    return this._name;
   }
 
   get room(): string {
-    return this._room
+    return this._room;
   }
 
-  get type(): MonsterType {
-    return this._type
+  get rank(): MonsterRank {
+    return this._rank;
   }
 
   get hp(): number {
-    return this._hp
+    return this._hp;
   }
 
   get atk(): number {
-    return this._atk
+    return this._atk;
   }
 
   hpAtFloor(floor): number {
@@ -42,9 +42,9 @@ export class Monster {
       'Miniboss': 2,
       'Boss': 3
     };
-    let hpFactor = Math.floor(0.65 * roomFloor) * bossMultipliers[this._type];
+    let hpFactor = Math.floor(0.65 * roomFloor) * bossMultipliers[this._rank];
     if (floor >= 500) {
-      hpFactor += Math.floor(0.13 * roomFloor) * bossMultipliers[this._type];
+      hpFactor += Math.floor(0.13 * roomFloor) * bossMultipliers[this._rank];
     }
     return this._hp + hpFactor;
   }

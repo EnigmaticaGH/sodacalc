@@ -6,5 +6,6 @@ handlers:
   upload: dist/sodacalc/(.*)(|\.map)
 
 - url: /(.*)
+  secure: always
   static_files: dist/sodacalc/index.html
   upload: dist/sodacalc/index.html

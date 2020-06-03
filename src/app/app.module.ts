@@ -18,13 +18,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
+import { KeysPipe } from './keys.pipe';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
     AppComponent,
     MonsterComponent,
     BestiaryComponent,
-    MonsterStatCalcComponent
+    MonsterStatCalcComponent,
+    KeysPipe
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ import { MatTableModule } from '@angular/material/table';
     MatFormFieldModule,
     MatInputModule,
     MatToolbarModule,
-    MatTableModule
+    MatTableModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
